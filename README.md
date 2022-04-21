@@ -1,3 +1,3 @@
 # Thesis Project
 
-https://thesistestbuild-froml7dj4-zhijunsong.vercel.app/
+https://thesistestbuild-mf86gn2l3-zhijunsong.vercel.app/
