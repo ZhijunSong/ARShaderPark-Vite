@@ -15,15 +15,13 @@
     
 </template>
 <script  type="module">
-import UI from './Ui.vue';
 import aframecomponent from './AR.vue';
 // import arjs from '@ar-js-org/ar.js';
 export default {
   
-  components:{
-    UI,
+components:{
     aframecomponent
-  },
+},
   
 }
 // const count = ref(0)
