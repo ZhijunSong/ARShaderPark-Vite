@@ -13,6 +13,7 @@ export default defineConfig({
       autoImport: true,
     }),
   ],
+  publicpath:'/vitevercel/',
   define: { 'process.env': {} },
   resolve: {
     alias: {
