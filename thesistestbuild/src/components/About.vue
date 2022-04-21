@@ -1,6 +1,6 @@
 <template>
   <v-row class="sm-6" no-gutters>
-    <v-col   offset-md="2">
+    <v-col  offset-md="2">
       <v-card class="pa-2" elevation="0">
         <div class="about align-start">
           <v-card-title>About</v-card-title>
@@ -37,6 +37,18 @@
           </p>
         </div>
       </v-card>
+      <v-footer>
+      <v-row class="sm-6">
+     <v-col sm-2><router-link to="/about">About</router-link></v-col>
+     <v-col><p>
+     lat:{{ lat }}, long:{{ lon }}</p></v-col>
+         <v-col>
+      <v-btn>
+        <span class="material-icons" @click="this.$router.push('/app')" >view_in_ar</span>
+      </v-btn>
+         </v-col>
+       </v-row>
+      </v-footer>
     </v-col>
   </v-row>
 </template>
@@ -44,5 +56,4 @@
 #app {
   margin-top: 0px;
 }
-
 </style>

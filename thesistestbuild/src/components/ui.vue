@@ -1,14 +1,5 @@
 <template>
-<v-container>
-    <div class="ui">
-    <!-- <button id="back" @click = "quitApp"><span class="material-icons">arrow_back</span></button> -->
-    <li id="location"><p>lat:{{lat}}, long:{{lon}}</p></li>
-    <button id="volumecontrol" @click="onoff">
-      <span v-if="on" class="material-icons">volume_up</span>
-      <span v-if="!on" class="material-icons">volume_off</span>
-    </button>
-    </div>
-</v-container>
+    
 </template>
 <script type="module">
 export default{

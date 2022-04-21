@@ -5,7 +5,7 @@ import About from '/src/components/About.vue'
 
 const routes = [
     {
-        path: '/',
+        path: '/app',
         name: 'Home',
         component: Home,
     },
@@ -15,10 +15,10 @@ const routes = [
         component: About,
     },
     {
-        path:'/intro',
+        path:'/',
         name:'Intro',
         component: Intro,
-    },
+    }, 
 ]
 const router = createRouter({
     history: createWebHistory(),

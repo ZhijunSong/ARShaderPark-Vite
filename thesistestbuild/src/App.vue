@@ -1,25 +1,10 @@
 <template>
   <v-app class="wrapper">
 
-    <v-main>
-      <router-view></router-view>
-    </v-main>
-      <v-footer>
-    <v-row>
-     <li><router-link to="/about">About</router-link></li>
+    <!-- <v-main>
+    </v-main> -->
+   <router-view></router-view>
 
-     lat:{{ lat }}, long:{{ lon }}
-
-
-      <v-btn id="volumecontrol" @click="onoff">
-        <span v-if="on" class="material-icons">volume_up</span>
-        <span v-if="!on" class="material-icons">volume_off</span>
-      </v-btn>
-      <v-btn>
-        <span class="material-icons" @click="quitApp">view_in_ar</span>
-      </v-btn>
-       </v-row>
-  </v-footer>
   </v-app>
 </template>
 <script>
