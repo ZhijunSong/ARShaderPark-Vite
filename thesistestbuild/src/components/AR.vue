@@ -14,7 +14,7 @@
       </a-assets>
       <a-entity
         sp-aframe
-        position="-1 -2 1"
+        position="-1 -10 1"
         scale="0.5 0.5 0.5"
         look-at="[gps-projected-camera]"
       ></a-entity>
@@ -39,15 +39,20 @@
       <span v-if="on" class="material-icons">volume_up</span>
       <span v-if="!on" class="material-icons">volume_off</span>
     </button>
+
+        <canvas ref="myCanvas"></canvas>  
+
     </div>
 </v-container>
 </v-app>
 
 </template>
 <script type="module">
+import '@ar-js-org/ar.js'
 import {sculptToMinimalRenderer,createSculptureWithGeometry} from 'shader-park-core';
-import { nextTick } from 'vue'
+import { nextTick, onMounted, render } from 'vue'
 import {spCode} from '../spCode.js';
+// import '@ar-js-org/ar.js/aframe';
 export default{
 
   name:'aframecomponent',
@@ -62,15 +67,14 @@ export default{
      fileid: null, 
     }
   },
- 
-   async mounted() {
+  async mounted() {
     await nextTick();
     this.getLocation();
-    this.shaderShell();
-  // let canvas = this.$refs.myCanvas;
-  //  sculptToMinimalRenderer(canvas, spCode);
+    this.shader();
+//   let canvas = this.$refs.myCanvas;
+//    sculptToMinimalRenderer(canvas, spCode);
   },
-
+ 
   methods:{
     onoff(){
       this.on =!this.on;
@@ -91,10 +95,10 @@ export default{
         );
       }
     },
-      shaderShell(){
+    shader(){
         AFRAME.registerComponent("sp-aframe", {
         init: function () {
-          this.geometry = new THREE.SphereGeometry(10,10,10);
+          this.geometry = new THREE.SphereGeometry(30,30,30);
           this.params = {
             time: 0.0,
             _scale:1.2,
@@ -117,7 +121,7 @@ export default{
       });
       }
   },
- 
+
 
 
 }

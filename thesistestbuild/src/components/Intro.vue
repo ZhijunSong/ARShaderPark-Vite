@@ -4,25 +4,26 @@
 
 <v-card
   class="pa-2"
-  elevation="2"
+  elevation="0"
   tile
   > 
   
-  <v-card-title>Disclaimer</v-card-title>
+  <v-card-title class=".justify-center">Disclaimer</v-card-title>
   <v-row>
     <v-card-text >
-      Before continuing to the website...<br>
+    &nbsp&nbspBefore continuing to the website...<br>
       This product may require to access your location data. 
-      If you consent with this requirement. Please click agree and enter the expeirence.<br>
-      <strong style="color:red">Warning:</strong> 
-      Be awared your surroundings and traffics when going through this experience.
+      If you consent with this requirement. Please click agree and enter the expeirence.<br></v-card-text>
+     <v-card-title class=".justify-center"> <strong style="color:red">Warning:</strong> </v-card-title>
+      <v-card-text >
+      &nbsp&nbspBe awared your surroundings and traffics when going through this experience.
       Submitting the agree button is meaning that you are responsible for your own safety during this expeirence. <div class=""></div>
 
     </v-card-text>
      
   </v-row>
-  <v-row no-gutters class="mb-6" justify="center">
-           <v-col lg="2">
+  <v-row no-gutters class="sm-6" justify="center">
+     <v-col col="12" sm="3">
     <v-checkbox
       v-model="checkbox1"
       :label="`disagree`"
@@ -60,7 +61,7 @@
     methods:{
       agree(){
         if(this.checkbox2==true&&this.checkbox1==false){
-          this.$router.push('/vitetestbuild/app'); 
+          this.$router.push('/app'); 
         }else{
           this.checkbox2 ==false;
           this.checkbox1 ==false;
@@ -73,13 +74,16 @@
   }
 </script>
 <style>
+.v-card-text{
+    text-align: left;
+}
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
+  margin-top: 0px;
 }
 .ui{
   z-index: 999;

@@ -1,13 +1,15 @@
 <template>
- <v-row
-      class="mb-6"
+<v-row
+      class="sm-12"
       no-gutters
     >
 <v-col 
-  md="6"
-        offset-md="3"
+  sm="10"
+ offset-sm="1"
 >
-<v-card>
+<v-card
+  elevation="0"
+>
 
 <div class="about">
     <v-card-title>About</v-card-title>
@@ -24,3 +26,19 @@ It will lift the hood of the car to view the engine and tell the massive and col
 
     
 </template>
+<style>
+#app{
+    margin-top:0px;
+}
+.v-application__wrap {
+    flex: 1 1 auto;
+    backface-visibility: hidden;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    max-width: 100%;
+    position: absolute;
+    top: 0px;
+}
+
+</style>
