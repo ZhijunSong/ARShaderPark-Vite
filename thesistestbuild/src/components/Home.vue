@@ -20,8 +20,7 @@ export default {
   
 components:{
     aframecomponent
-},
-  
+}  
 }
 // const count = ref(0)
 </script>

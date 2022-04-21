@@ -5,18 +5,20 @@
       arjs="sourceType: webcam; videoTexture: true; debugUIEnabled: false;"
     >
      <a-assets>
-        <!-- <audio
+        <audio
           id="test"
           preload="auto"
           cross-origin="anonymous"
           src="src/assets/Ambience underwaterwav.mp3"
-        ></audio> -->
+        ></audio>
       </a-assets>
       <a-entity
         sp-aframe
-        position="-1 -10 1"
+        position="-1 -10 2"
         scale="0.5 0.5 0.5"
         look-at="[gps-projected-camera]"
+        sound="src:#test; autoplay:true"
+
       ></a-entity>
         <a-box
         id="box"
@@ -26,24 +28,21 @@
         color="#4CC3D9"
         shadow
        change-color-on-hover="color: blue"
+         sound="src:#test; autoplay:true"
+
       ></a-box>
       <a-camera fov="40" gps-projected-camera rotation-reader> </a-camera>
 
     </a-scene>
 
-    <v-container>
-    <div class="ui">
     <!-- <button id="back" @click = "quitApp"><span class="material-icons">arrow_back</span></button> -->
-    <li id="location"><p>lat:{{lat}}, long:{{lon}}</p></li>
-    <button id="volumecontrol" @click="onoff">
+    <v-row >id="location"><p>lat:{{lat}}, long:{{lon}}</p> </v-row>
+     <v-row >   <v-btn id="volumecontrol" @click="onoff">
       <span v-if="on" class="material-icons">volume_up</span>
       <span v-if="!on" class="material-icons">volume_off</span>
-    </button>
-
-        <canvas ref="myCanvas"></canvas>  
-
-    </div>
-</v-container>
+    </v-btn>
+    </v-row>
+   
 </v-app>
 
 </template>

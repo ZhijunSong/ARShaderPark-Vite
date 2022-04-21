@@ -1,47 +1,91 @@
 <template>
-   <v-app class="wrapper">
-   
-    <v-navigation-drawer   
-     v-model="drawer"
-      bottom
-      temporary
-      id="drawers"
-    >
-     <!-- <li><router-link to="/">Intro</router-link></li><br> -->
+  <v-app class="wrapper">
 
-     <li><router-link to="/about">About</router-link></li><br>
-     <li><router-link to="/intro">Intro</router-link></li><br>
-
-     <li><router-link to="/">Home</router-link></li><br>
-     </v-navigation-drawer>
     <v-main>
-    <v-btn id="menu">
-    <v-app-bar-nav-icon
-           color="white"
-          @click.stop="drawer = !drawer"
-    >
-    </v-app-bar-nav-icon>
-    </v-btn>
-
-     <router-view></router-view>
+      <router-view></router-view>
     </v-main>
-   </v-app>
+      <v-footer>
+    <v-row>
+     <li><router-link to="/about">About</router-link></li>
 
+     lat:{{ lat }}, long:{{ lon }}
+
+
+      <v-btn id="volumecontrol" @click="onoff">
+        <span v-if="on" class="material-icons">volume_up</span>
+        <span v-if="!on" class="material-icons">volume_off</span>
+      </v-btn>
+      <v-btn>
+        <span class="material-icons" @click="quitApp">view_in_ar</span>
+      </v-btn>
+       </v-row>
+  </v-footer>
+  </v-app>
 </template>
 <script>
-  export default {
-    data () {
-      return {
-        drawer: null,
+import { nextTick, onMounted, render } from 'vue'
+
+export default {
+ data(){
+    return{
+    // soundsrc:"src/assets/Ambience underwaterwav.mp3",
+    drawer:null,
+    on: true,
+     lat:0,
+     lon:0, 
+     sound: null,
+     description: null,
+     fileid: null, 
+    }
+  },
+  methods: {
+    onoff() {
+      this.on = !this.on;
+      // console.log(this.on);
+    },
+    quitApp(){
+      // this.on = true;
+      this.$router.push('/'); 
+
+    },
+    getLocation(){
+      if(navigator.geolocation){
+        navigator.geolocation.getCurrentPosition(
+          position=>{
+            this.lat=Math.round(position.coords.latitude * 100) / 100;
+            this.lon=Math.round(position.coords.longitude*100)/100;
+          }
+        );
       }
     },
+   
+  },
+ async mounted(){
+   await nextTick();
+
+    this.getLocation();
   }
+
+};
 </script>
 
 <style>
 button.v-btn.v-btn--elevated.v-btn--icon.v-theme--light.bg-white.v-btn--density-default.v-btn--size-default.v-btn--variant-contained.v-app-bar-nav-icon {
-    box-shadow: none;
+  box-shadow: none;
 }
+/* .v-toolbar v-toolbar--density-default v-theme--light v-app-bar{
+  
+    z-index: 1004;
+    transform: translateY(0%);
+    position: absolute;
+    margin-left: 0px;
+    margin-top: 0px;
+    display: flex;
+    bottom: 0%;
+    width: calc((100% - 0px) - 0px);
+    justify-content: flex-end;
+} */
+
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -50,7 +94,7 @@ button.v-btn.v-btn--elevated.v-btn--icon.v-theme--light.bg-white.v-btn--density-
   color: #2c3e50;
   margin-top: 60px;
 }
-.ui{
+.ui {
   z-index: 999;
 }
 
@@ -68,32 +112,31 @@ li {
 a {
   color: #42b983;
 }
-button#volumecontrol{
-    border: none;
-    background: none;
-    display: block;
-    position:absolute;
-    right:20px;
-    bottom: 10px;
-    color:white;
+button#volumecontrol {
+  border: none;
+  background: none;
+  display: block;
+  position: absolute;
+  right: 20px;
+  bottom: 10px;
+  color: black !important;
 }
-#location{
-   position:absolute;
-   left: 10px;
-   color:white;
-   font-weight: 600;
-   font-size: 12px;
-   top:10px;
-}    
-.ui{
+#location {
+  position: absolute;
+  left: 10px;
+  color: white;
+  font-weight: 600;
+  font-size: 12px;
+  top: 10px;
+}
+.ui {
   display: block;
   z-index: 1;
   width: 100%;
-  height:100%;
-
+  height: 100%;
 }
-video{
-  z-index:-999;
+video {
+  z-index: -999;
   overflow: hidden;
   visibility: hidden;
 }
@@ -105,7 +148,7 @@ video{
   left: 0;
   background-color: none;
   z-index: 9999;
-  display:none;
+  display: none;
   justify-content: center;
   align-items: center;
 }
@@ -115,13 +158,11 @@ video{
   font-size: 1.25em;
   color: rgb(0, 0, 0);
 }
-#menu{
-  position:sticky;
+#menu {
+  position: sticky;
   display: block;
-  left:20px;
-  top:20px;
+  left: 20px;
+  top: 20px;
   z-index: 999;
 }
-
-  
 </style>

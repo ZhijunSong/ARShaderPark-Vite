@@ -1,81 +1,68 @@
 <template>
-<div class="Intro">
+  <div class="Intro">
     <v-col sm="12">
-
-<v-card
-  class="pa-2"
-  elevation="0"
-  tile
-  > 
-  
-  <v-card-title class=".justify-center">Disclaimer</v-card-title>
-  <v-row>
-    <v-card-text >
-    &nbsp&nbspBefore continuing to the website...<br>
-      This product may require to access your location data. 
-      If you consent with this requirement. Please click agree and enter the expeirence.<br></v-card-text>
-     <v-card-title class=".justify-center"> <strong style="color:red">Warning:</strong> </v-card-title>
-      <v-card-text >
-      &nbsp&nbspBe awared your surroundings and traffics when going through this experience.
-      Submitting the agree button is meaning that you are responsible for your own safety during this expeirence. <div class=""></div>
-
-    </v-card-text>
-     
-  </v-row>
-  <v-row no-gutters class="sm-6" justify="center">
-     <v-col col="12" sm="3">
-    <v-checkbox
-      v-model="checkbox1"
-      :label="`disagree`"
-    ></v-checkbox>
-        </v-col>
-      <!-- <v-col> -->
-        <v-col lg="2">
-    <v-checkbox
-      v-model="checkbox2"
-      :label="`agree`"
-    ></v-checkbox>
-        </v-col>
-
- 
-    </v-row>
-   <v-row sm="12" justify="center">
-    <v-btn @click="agree()">Confirm</v-btn>
-    </v-row>
-    </v-card>
-  </v-col>
-
- 
-</div>
-    
+      <v-card class="pa-2" elevation="0" tile>
+        <v-card-title class=".justify-center">Disclaimer</v-card-title>
+        <v-row>
+          <v-card-text>
+            &nbsp&nbspBefore continuing to the website...<br />
+            This product may require to access your location data. If you
+            consent with this requirement. Please click agree and enter the
+            expeirence.<br
+          /></v-card-text>
+          <v-card-title class=".justify-center">
+            <strong style="color: red">Warning:</strong>
+          </v-card-title>
+          <v-card-text>
+            &nbsp&nbspBe awared your surroundings and traffics when going
+            through this experience. Submitting the agree button is meaning that
+            you are responsible for your own safety during this expeirence.
+            <div class=""></div>
+          </v-card-text>
+          <v-card-text>
+            Strongly suggest to use headphone during your experience.
+            <span class="material-icons">headphones</span>
+          </v-card-text>
+        </v-row>
+        <v-row no-gutters class="sm-6" justify="center">
+          <v-col col="12" sm="3">
+            <v-checkbox v-model="checkbox1" :label="`disagree`"></v-checkbox>
+          </v-col>
+          <!-- <v-col> -->
+          <v-col lg="2">
+            <v-checkbox v-model="checkbox2" :label="`agree`"></v-checkbox>
+          </v-col>
+        </v-row>
+        <v-row sm="12" justify="center">
+          <v-btn @click="agree()">Confirm</v-btn>
+        </v-row>
+      </v-card>
+    </v-col>
+  </div>
 </template>
 <script>
-  export default {
-    data () {
-      return {
-        checkbox1: false,
-        checkbox2: false,
-
+export default {
+  data() {
+    return {
+      checkbox1: false,
+      checkbox2: false,
+    };
+  },
+  methods: {
+    agree() {
+      if (this.checkbox2 == true && this.checkbox1 == false) {
+        this.$router.push("/app");
+      } else {
+        this.checkbox2 == false;
+        this.checkbox1 == false;
       }
     },
-    methods:{
-      agree(){
-        if(this.checkbox2==true&&this.checkbox1==false){
-          this.$router.push('/app'); 
-        }else{
-          this.checkbox2 ==false;
-          this.checkbox1 ==false;
-        }
-
-      },
-
-    },
-
-  }
+  },
+};
 </script>
 <style>
-.v-card-text{
-    text-align: left;
+.v-card-text {
+  text-align: left;
 }
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
@@ -85,7 +72,7 @@
   color: #2c3e50;
   margin-top: 0px;
 }
-.ui{
+.ui {
   z-index: 999;
 }
 
@@ -103,32 +90,31 @@ li {
 a {
   color: #42b983;
 }
-button#volumecontrol{
-    border: none;
-    background: none;
-    display: block;
-    position:absolute;
-    right:20px;
-    bottom: 10px;
-    color:white;
+button#volumecontrol {
+  border: none;
+  background: none;
+  display: block;
+  position: absolute;
+  right: 20px;
+  bottom: 10px;
+  color: white;
 }
-#location{
-   position:absolute;
-   left: 10px;
-   color:white;
-   font-weight: 600;
-   font-size: 12px;
-   top:10px;
-}    
-.ui{
+#location {
+  position: absolute;
+  left: 10px;
+  color: white;
+  font-weight: 600;
+  font-size: 12px;
+  top: 10px;
+}
+.ui {
   display: block;
   z-index: 1;
   width: 100%;
-  height:100%;
-
+  height: 100%;
 }
-video{
-  z-index:-999;
+video {
+  z-index: -999;
   overflow: hidden;
   visibility: hidden;
 }
@@ -140,7 +126,7 @@ video{
   left: 0;
   background-color: none;
   z-index: 9999;
-  display:none;
+  display: none;
   justify-content: center;
   align-items: center;
 }
@@ -150,6 +136,4 @@ video{
   font-size: 1.25em;
   color: rgb(0, 0, 0);
 }
-
-  
 </style>
