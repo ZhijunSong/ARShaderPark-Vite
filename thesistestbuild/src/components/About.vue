@@ -37,18 +37,19 @@
           </p>
         </div>
       </v-card>
-      <v-footer>
+    <!-- <v-card > -->
+    <v-toolbar dense style="position:absolute; bottom:0px;width:100%">
       <v-row class="sm-6">
-     <v-col sm-2><router-link to="/about">About</router-link></v-col>
-     <v-col><p>
-     lat:{{ lat }}, long:{{ lon }}</p></v-col>
-         <v-col>
+     <!-- <v-col sm-2><router-link to="/about">About</router-link></v-col> -->
+     <v-col><p>information</p></v-col>
+      <v-col>
       <v-btn>
         <span class="material-icons" @click="this.$router.push('/app')" >view_in_ar</span>
       </v-btn>
          </v-col>
        </v-row>
-      </v-footer>
+    </v-toolbar>
+      <!-- </v-card> -->
     </v-col>
   </v-row>
 </template>
@@ -56,4 +57,5 @@
 #app {
   margin-top: 0px;
 }
+
 </style>

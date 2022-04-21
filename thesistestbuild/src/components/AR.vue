@@ -36,7 +36,8 @@
 
     </a-scene>
     </v-main>
-     <v-footer>
+     <v-card height="100px" elevation="1">
+         <v-toolbar dense>
     <v-row class="sm-6">
      <v-col sm-2><router-link to="/about">About</router-link></v-col>
      <v-col><p>
@@ -48,7 +49,8 @@
     </v-btn>
     </v-col>
     </v-row>
-    </v-footer>
+    </v-toolbar>
+    </v-card>
    
 </v-app>
 
