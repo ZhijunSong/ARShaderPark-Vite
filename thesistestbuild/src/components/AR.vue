@@ -10,16 +10,14 @@
           id="test"
           preload="auto"
           cross-origin="anonymous"
-          src="src/assets/Ambience underwaterwav.mp3"
+          src="./audio/soundclip.mp3"
         ></audio>
       </a-assets>
       <a-entity
         sp-aframe
-        position="-1 -10 2"
+        position="-1 -2 2"
         scale="0.5 0.5 0.5"
         look-at="[gps-projected-camera]"
-        sound="src:#test; autoplay:true"
-
       ></a-entity>
         <a-box
         id="box"
@@ -36,7 +34,7 @@
 
     </a-scene>
     </v-main>
-     <v-card height="100px" elevation="1">
+     <!-- <v-card height="100px" elevation="1"> -->
          <v-toolbar dense>
     <v-row class="sm-6">
      <v-col sm-2><router-link to="/about">About</router-link></v-col>
@@ -50,17 +48,23 @@
     </v-col>
     </v-row>
     </v-toolbar>
-    </v-card>
+    <!-- </v-card> -->
    
 </v-app>
 
 </template>
 <script type="module">
-import '@ar-js-org/ar.js'
+// import '@ar-js-org/ar.js'
 import {sculptToMinimalRenderer,createSculptureWithGeometry} from 'shader-park-core';
 import { nextTick, onMounted, render } from 'vue'
 import {spCode} from '../spCode.js';
-// import '@ar-js-org/ar.js/aframe';
+import '@ar-js-org/ar.js';
+// import soundUrl from '../assets/soundclip.mp3'
+// import '@artcom/react-three-arjs'
+// const soundUrl = new URL('../assets/soundclip.mp3', import.meta.url).href
+
+
+
 export default{
 
   name:'aframecomponent',
@@ -70,15 +74,17 @@ export default{
     on: true,
      lat:0,
      lon:0, 
-     sound: null,
      description: null,
      fileid: null, 
+    //  soundUrl
     }
+  },
+  created() {
+    this.shader();
   },
   async mounted() {
     await nextTick();
     this.getLocation();
-    this.shader();
 //   let canvas = this.$refs.myCanvas;
 //    sculptToMinimalRenderer(canvas, spCode);
   },
@@ -86,7 +92,10 @@ export default{
   methods:{
     onoff(){
       this.on =!this.on;
-      // console.log(this.on);
+    },
+    loadfile(){
+    document.getElementById('test').src =soundUrl;
+
     },
     quitApp(){
       // this.on = true;
