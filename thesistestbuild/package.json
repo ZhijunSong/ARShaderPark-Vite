@@ -11,6 +11,7 @@
   "dependencies": {
     "@ar-js-org/ar.js": "^3.4.0-alpha-rc2",
     "@mdi/font": "5.9.55",
+    "https-server": "^0.1.2",
     "roboto-fontface": "*",
     "shader-park-core": "^0.1.15",
     "vite-plugin-vue-router": "^1.0.18",

@@ -54,11 +54,13 @@
 
 </template>
 <script type="module">
-// import '@ar-js-org/ar.js'
+import '@ar-js-org/ar.js'
 import {sculptToMinimalRenderer,createSculptureWithGeometry} from 'shader-park-core';
-import { nextTick, onMounted, render,created} from 'vue'
+import { nextTick} from 'vue'
 import {spCode} from '../spCode.js';
-// import '@ar-js-org/ar.js';
+
+
+
 // import soundUrl from '../assets/soundclip.mp3'
 // import '@artcom/react-three-arjs'
 // const soundUrl = new URL('../assets/soundclip.mp3', import.meta.url).href

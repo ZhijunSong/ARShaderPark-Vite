@@ -5,7 +5,7 @@
         <v-card-title class=".justify-center">Disclaimer</v-card-title>
         <v-row>
           <v-card-text>
-            &nbsp&nbspBefore continuing to the website...<br />
+            Before continuing to the website...<br />
             This product may require to access your location data. If you
             consent with this requirement. Please click agree and enter the
             expeirence.<br
@@ -14,7 +14,7 @@
             <strong style="color: red">Warning:</strong>
           </v-card-title>
           <v-card-text>
-            &nbsp&nbspBe awared your surroundings and traffics when going
+            Be awared your surroundings and traffics when going
             through this experience. Submitting the agree button is meaning that
             you are responsible for your own safety during this expeirence.
             <div class=""></div>
