@@ -59,7 +59,6 @@ import {sculptToMinimalRenderer,createSculptureWithGeometry} from 'shader-park-c
 import {spCode} from '../spCode.js';
 
 
-
 // import soundUrl from '../assets/soundclip.mp3'
 // import '@artcom/react-three-arjs'
 // const soundUrl = new URL('../assets/soundclip.mp3', import.meta.url).href
@@ -82,12 +81,14 @@ export default{
   },
   created() {
     this.shader();
+
   },
   async mounted() {
     this.getLocation();
+  },
 //   let canvas = this.$refs.myCanvas;
 //    sculptToMinimalRenderer(canvas, spCode);
-  },
+  
  
   methods:{
     onoff(){

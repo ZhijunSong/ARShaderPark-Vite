@@ -1,10 +1,29 @@
-import { defineConfig } from 'vite'
+import { defineConfig,config } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import vuetify from '@vuetify/vite-plugin'
-
 const path = require('path')
-
 // https://vitejs.dev/config/
+
+const ignoredElement=[
+  'a-scene',
+  'a-asset-item',
+  'a-image',
+  'a-curvedimage',
+  'a-assets',
+  'a-text',
+  'a-plane',
+  'a-cylinder',
+  'a-rounded',
+  'a-light',
+  'a-entity',
+  'a-camera',
+  'a-box',
+  'a-sky',
+  'a-cursor',
+  'a-gltf-model',
+  'a-triangle',
+  'a-cubemap'
+]
 export default defineConfig({
   plugins: [
     vue(),
@@ -13,6 +32,8 @@ export default defineConfig({
       autoImport: true,
     }),
   ],
+  ignoredElement,
+  
   publicpath:'/vitevercel/',
   define: { 'process.env': {} },
   resolve: {
@@ -20,6 +41,10 @@ export default defineConfig({
       '@': path.resolve(__dirname, 'src'),
     },
   },
+  compilerOptions: {
+    isCustomElement: () => true
+  }
+  
   /* remove the need to specify .vue files https://vitejs.dev/config/#resolve-extensions
   resolve: {
     extensions: [
