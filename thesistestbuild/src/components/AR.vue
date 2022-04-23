@@ -56,7 +56,6 @@
 <script type="module">
 import '@ar-js-org/ar.js'
 import {sculptToMinimalRenderer,createSculptureWithGeometry} from 'shader-park-core';
-import { nextTick} from 'vue'
 import {spCode} from '../spCode.js';
 
 
@@ -85,7 +84,6 @@ export default{
     this.shader();
   },
   async mounted() {
-    await nextTick();
     this.getLocation();
 //   let canvas = this.$refs.myCanvas;
 //    sculptToMinimalRenderer(canvas, spCode);

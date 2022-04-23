@@ -8,7 +8,6 @@
   </v-app>
 </template>
 <script>
-import { nextTick, onMounted, render } from 'vue'
 
 export default {
  data(){
@@ -46,7 +45,6 @@ export default {
    
   },
  async mounted(){
-   await nextTick();
 
     this.getLocation();
   }
