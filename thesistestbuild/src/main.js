@@ -3,13 +3,13 @@ import App from './App.vue'
 import vuetify from './plugins/vuetify'
 import { loadFonts } from './plugins/webfontloader'
 import router from "./router"
-import AFRAME from 'aframe';
+// import AFRAME from 'aframe';
 loadFonts()
 
 createApp(App)
   .use(vuetify)
   .use(router)
-  .use(AFRAME)
+  // .use(AFRAME)
   .mount('#app')
 
 

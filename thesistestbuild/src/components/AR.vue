@@ -15,7 +15,7 @@
       </a-assets>
       <a-entity
         sp-aframe
-        position="-1 -2 2"
+        position="2 20 2"
         scale="0.5 0.5 0.5"
         look-at="[gps-projected-camera]"
       ></a-entity>
@@ -41,7 +41,7 @@
      <v-col><p>
      lat:{{ lat }}, long:{{ lon }}</p></v-col>
      <v-col>
-    <v-btn  @click="onoff">
+     <v-btn  @click="onoff">
       <span v-if="on" class="material-icons">volume_up</span>
       <span v-if="!on" class="material-icons">volume_off</span>
     </v-btn>
@@ -54,7 +54,7 @@
 
 </template>
 <script type="module">
-import '@ar-js-org/ar.js'
+// import '@ar-js-org/ar.js'
 import {sculptToMinimalRenderer,createSculptureWithGeometry} from 'shader-park-core';
 import {spCode} from '../spCode.js';
 
@@ -116,13 +116,20 @@ export default{
     shader(){
         AFRAME.registerComponent("sp-aframe", {
         init: function () {
-          this.geometry = new THREE.SphereGeometry(30,30,30);
+          this.geometry = new THREE.SphereGeometry(50,50,50);
           this.params = {
             time: 0.0,
             _scale:1.2,
           };
           let mesh = createSculptureWithGeometry(this.geometry, spCode, () => ({
             time: this.params.time,
+            soundVal:this.params.soundVal,
+            soundVal2:this.params.soundVal2,
+            soundLevel:this.params.soundLevel,
+            noiseScale:this.params.noiseScale,
+            newin:this.params.newin,
+            blendLevel:this.params.blendLevel
+
             // sound: this.params.sound,
           }));
           this.material = new THREE.MeshStandardMaterial();
@@ -135,12 +142,25 @@ export default{
         },
         tick: function (time, timeDelta) {
           this.params.time += 0.01;
+          this.params.soundVal = [0.0,0.0,1.0];
+          this.params.soundLevel =0.2;
+          this.params.soundVal2 = [10.0,0,200];
+          this.params.noiseScale = (20,0,200);
+          this.params.newin = (0.02);
+          this.params.blendLevel = (0.2);
+
+
         },
       });
       }
   },
 
-
+// let soundVal = input();//0.0, 0.0, 1.0
+// let soundLevel =input();//0.2
+// let soundVal2= input();//10, 0, 200//gyscale
+// let noiseScale = input();//20, 0, 200
+// let newin = input();//0.02
+// let blendLevel = input();//0.2
 
 }
 </script>

@@ -3,6 +3,7 @@ import vue from '@vitejs/plugin-vue'
 import vuetify from '@vuetify/vite-plugin'
 const path = require('path')
 // https://vitejs.dev/config/
+import mkcert from 'vite-plugin-mkcert'
 
 const ignoredElement=[
   'a-scene',
@@ -31,9 +32,9 @@ export default defineConfig({
     vuetify({
       autoImport: true,
     }),
+    mkcert() 
   ],
   ignoredElement,
-  
   publicpath:'/vitevercel/',
   define: { 'process.env': {} },
   resolve: {
@@ -41,8 +42,20 @@ export default defineConfig({
       '@': path.resolve(__dirname, 'src'),
     },
   },
+
   compilerOptions: {
     isCustomElement: () => true
+  },
+  build:{
+    chunkSizeWarningLimit: 1500,
+  },
+  server:{
+    https: true ,
+    origin: 'http://localhost:3000/',
+    host: '192.168.0.214',
+    fs: {
+        strict: true,
+    }
   }
   
   /* remove the need to specify .vue files https://vitejs.dev/config/#resolve-extensions
