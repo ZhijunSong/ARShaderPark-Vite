@@ -1,5 +1,5 @@
 <template>
-  <div class="Intro">
+  <v-app class="Intro">
     <v-col sm="12">
       <v-card class="pa-2" elevation="0" tile>
         <v-card-title class=".justify-center">Disclaimer</v-card-title>
@@ -24,6 +24,7 @@
             <span class="material-icons">headphones</span>
           </v-card-text>
         </v-row>
+        <v-container>
         <v-row no-gutters class="sm-6" justify="center">
           <v-col col="12" sm="3">
             <v-checkbox v-model="checkbox1" :label="`disagree`"></v-checkbox>
@@ -33,15 +34,20 @@
             <v-checkbox v-model="checkbox2" :label="`agree`"></v-checkbox>
           </v-col>
         </v-row>
+        </v-container>
         <v-row sm="12" justify="center">
           <v-btn @click="agree()">Confirm</v-btn>
         </v-row>
+     <v-col sm-2><router-link to="/guide">Guide</router-link></v-col>
       </v-card>
     </v-col>
-  </div>
+  </v-app>
 </template>
 <script>
+
+
 export default {
+
   data() {
     return {
       checkbox1: false,

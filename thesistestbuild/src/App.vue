@@ -1,54 +1,54 @@
 <template>
   <v-app class="wrapper">
-
     <!-- <v-main>
     </v-main> -->
-   <router-view></router-view>
-
+    <router-view></router-view>
   </v-app>
 </template>
 <script>
-
 export default {
- data(){
-    return{
-    // soundsrc:"src/assets/Ambience underwaterwav.mp3",
-    drawer:null,
-    on: true,
-     lat:0,
-     lon:0, 
-     sound: null,
-     description: null,
-     fileid: null, 
-    }
+  data() {
+    return {
+      drawer: null,
+      on: true,
+      lat: 0,
+      lon: 0,
+      sound: null,
+      description: null,
+      fileid: null,
+    };
+  },
+
+  mounted() {
+    window.addEventListener("orientationchange", this.handleOrientationChange);
+    this.getLocation();
   },
   methods: {
     onoff() {
       this.on = !this.on;
       // console.log(this.on);
     },
-    quitApp(){
+    quitApp() {
       // this.on = true;
-      this.$router.push('/'); 
-
+      this.$router.push("/");
     },
-    getLocation(){
-      if(navigator.geolocation){
-        navigator.geolocation.getCurrentPosition(
-          position=>{
-            this.lat=Math.round(position.coords.latitude * 100) / 100;
-            this.lon=Math.round(position.coords.longitude*100)/100;
-          }
-        );
+    getLocation() {
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition((position) => {
+          this.lat = Math.round(position.coords.latitude * 100) / 100;
+          this.lon = Math.round(position.coords.longitude * 100) / 100;
+        });
       }
     },
-   
+    handleOrientationChange() {
+      const orientation = window.screen.orientation.type;
+      if (orientation === "portrait-primary") {
+        // portrait mode
+      } else if (orientation === "landscape-primary") {
+        // landscape mode
+      }
+    },
   },
- async mounted(){
-
-    this.getLocation();
-  }
-
 };
 </script>
 

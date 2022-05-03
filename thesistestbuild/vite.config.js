@@ -1,9 +1,11 @@
 import { defineConfig,config } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import vuetify from '@vuetify/vite-plugin'
+
+import mkcert from 'vite-plugin-mkcert'
+
 const path = require('path')
 // https://vitejs.dev/config/
-import mkcert from 'vite-plugin-mkcert'
 
 const ignoredElement=[
   'a-scene',
@@ -51,8 +53,8 @@ export default defineConfig({
   },
   server:{
     https: true ,
-    origin: 'http://localhost:3000/',
-    host: '192.168.0.214',
+    // origin:"http://localhost:3000/",
+    host: '0.0.0.0',
     fs: {
         strict: true,
     }

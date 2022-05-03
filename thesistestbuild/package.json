@@ -3,9 +3,8 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "parcel",
     "serve": "vite preview",
-    "build": "pracel build",
+    "build": "vite build",
     "dev": "vite",
     "preview": "vite preview"
   },
@@ -22,7 +21,8 @@
     "vue-router": "^4.0.14",
     "vuerify": "^0.4.0",
     "vuetify": "^3.0.0-beta.0",
-    "webfontloader": "^1.0.0"
+    "webfontloader": "^1.0.0",
+    "yarn": "^1.22.18"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^2.3.1",
