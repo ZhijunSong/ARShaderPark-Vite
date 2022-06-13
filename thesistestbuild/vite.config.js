@@ -37,14 +37,13 @@ export default defineConfig({
     mkcert() 
   ],
   ignoredElement,
-  publicpath:'/vitevercel/',
+  publicpath:'/vitevercel/thesistestbuild',
   define: { 'process.env': {} },
   resolve: {
     alias: {
       '@': path.resolve(__dirname, 'src'),
     },
   },
-
   compilerOptions: {
     isCustomElement: () => true
   },

@@ -7,59 +7,89 @@
 		    embedded
       >
         <a-assets>
-           <audio
+           <!-- <audio
             id="test"
             preload="auto"
             cross-origin="anonymous"
             volume="1"
             src="src/assets/soundclip.mp3"
-          ></audio>
-          <audio
+          ></audio> -->
+          <!-- <audio
             id="test2"
             preload="auto"
             cross-origin="anonymous"
             volume="1"
             src="src/assets/tablebounce.wav"
-          ></audio>
-         
+          ></audio> -->
+          <img id="blue" src="src/assets/blue.png">
+          <img id="cyan" src="src/assets/cyan.png">
+          <img id="green" src="src/assets/green.png">
+          <img id="orange" src="src/assets/orange.png">
+          <img id="red" src="src/assets/red.png">
+          <img id="white" src="src/assets/white.png">
         </a-assets>
-      
-          <!-- <a-entity clickhandler emitevents="true" cursor="rayOrigin: mouse" 
-          id="animated-marker" 
-          raycaster="objects: [clickhandler]"
-          > -->
+
           <a-entity
           sp-aframe
           position="0 10 0"
-          scale="10 10 10"
+          scale="5 5 5"
           look-at="[gps-camera]"
-          gps-entity-place="latitude:40.737129; longitude:-73.992436;"
-        ></a-entity>
-
-          <!-- <a-entity
-          newsp-aframe
-          position="0 20 0"
-          scale="10 10 10"
-          sound="src:#test2; autoplay:true"
-          look-at="[gps-camera]"
-          gps-entity-place="latitude:40.748405; longitude:-73.989212;"
-        ></a-entity> -->
+          gps-entity-place="latitude:40.736203;longitude: -73.990883;"
+        ></a-entity> <!--traffic light-->
           <a-box
+          clickerevent
           id="clickable"
           position="0 0 0"
           look-at="[gps-camera]"
           rotation="0 45 0"
           color="#4CC3D9"
-          shadow
-          sound="src:#test; autoplay:true"
           gps-entity-place="latitude:40.7484197; longitude:-73.9893421;">
         </a-box>
           <!-- </a-entity> -->
-         
+      
+           <a-image src="#orange"
+           position="0 2 0"
+           scale="10 10 10"
+           look-at="[gps-camera]"
+           gps-entity-place="latitude:40.73613217392068; longitude: -73.98918485113705;"
+           >
+           </a-image> <!--link-->
+        
+          <a-image src="#red"
+           position="0 10 0"
+           scale="2 2 2"
+           look-at="[gps-camera]"
+           gps-entity-place="latitude:40.73700171324293;longitutde:-73.99224963223236;"
+           ><!--elevator-->
+           </a-image>
+          <a-image src="#red"
+           position="0 3 0"
+           scale="2 2 2"
+           look-at="[gps-camera]"
+           gps-entity-place="latitude:40.736541317643315; logitude:-73.99076697917286;"
+           >
+           <!--lightbulb-->
+           </a-image>
+
+          <a-image src="#green"
+           position="0 1 0"
+           scale="2 2 2"
+           look-at="[gps-camera]"
+           gps-entity-place="latitude:40.736203;longitude: -73.990883;"
+           >
+           <!--metro-->
+           </a-image>
+
+          <a-image src="#green"
+           position="0 10 0"
+           scale="2 2 2"
+           look-at="[gps-camera]"
+           gps-entity-place=""
+           >
+           <!--table in the park-->
+           </a-image>
        
         <a-camera fov="40" gps-camera="minDistance:2;maxDistance:10" rotation-reader>
-          
-          
         </a-camera>
       </a-scene>
     </v-main>
@@ -81,12 +111,14 @@
     <!-- </v-card> -->
   </v-app>
 </template>
-<script type="module">
+
+<script type="module" lang="ts">
 // import '@ar-js-org/ar.js'
-import {nextTick} from 'vue';
+import {nextTick,onMounted, ref} from 'vue';
 import {sculptToMinimalRenderer,createSculptureWithGeometry} from 'shader-park-core';
-import {spCode} from '../spCode.js';
-// import {newspCode} from '../spCode_.js';
+// import {spCode} from '../spCode.js';
+import {newspCode} from '../spCode_.js';
+      let Aframe =window.AFRAME;
 
 export default{
 
@@ -108,10 +140,11 @@ export default{
   // },
   async mounted() {
 
-      await nextTick();
+    await nextTick();
 
     this.getLocation();
     this.shader();
+    this.clicker();
     const distanceMsg = document.querySelector('[gps-entity-place]').getAttribute('distanceMsg');
     console.log(distanceMsg);   
   },
@@ -144,9 +177,9 @@ export default{
             this.geometry = new THREE.SphereGeometry(50,50,50);
             this.params = {
               time: 0.0,
-              soundLevel:1.0
+              soundLevel:0.2
             };
-            let mesh = createSculptureWithGeometry(this.geometry, spCode, () => ({
+            let mesh = createSculptureWithGeometry(this.geometry, newspCode, () => ({
               time: this.params.time,
               soundLevel:this.params.soundLevel
               // sound: this.params.sound,
@@ -162,72 +195,45 @@ export default{
           },
         });
       },
-    
-      // shader(){
-      //     AFRAME.registerComponent("newsp-aframe", {
-      //     init: function () {
-      //       this.geometry = new THREE.SphereGeometry(50,50,50);
-      //       this.params = {
-      //         time: 0.0,
-      //         _scale:1.2,
-      //       };
-      //       let mesh = createSculptureWithGeometry(this.geometry, newspCode, () => ({
-      //         time: this.params.time,
-      //         soundVal:this.params.soundVal,
-      //         soundVal2:this.params.soundVal2,
-      //         soundLevel:this.params.soundLevel,
-      //         noiseScale:this.params.noiseScale,
-      //         newin:this.params.newin,
-      //         blendLevel:this.params.blendLevel
-
-      //         // sound: this.params.sound,
-      //       }));
-      //       this.material = new THREE.MeshStandardMaterial();
-
-      //       this.mesh = new THREE.Mesh(this.geometry, this.material);
-      //       this.mesh.material = mesh.material;
-      //       this.mesh.onBeforeRender = mesh.onBeforeRender;
-      //       this.el.setObject3D("mesh", this.mesh);
-      //       // this.el.object3D.scale.set(0.1,0.1,0.1);
-      //     },
-      //     tick: function (time, timeDelta) {
-      //       this.params.time += 0.01;
-      //       this.params.soundVal = [0.0,0.0,1.0];
-      //       this.params.soundLevel =0.2;
-      //       this.params.soundVal2 = [10.0,0,200];
-      //       this.params.noiseScale = (20,0,200);
-      //       this.params.newin = (0.02);
-      //       this.params.blendLevel = (0.2);
-      //     },
-      //   });
-      // },
       clicker(){
-   AFRAME.registerComponent('clickhandler', {
-
-    init: function() {
-        const animatedMarker = document.querySelector("#animated-marker");
-        const aEntity = document.querySelector("#clickable");
-
-        // every click, we make our model grow in size :)
-        animatedMarker.addEventListener('click', function(ev, target){
-            const intersectedElement = ev && ev.detail && ev.detail.intersectedEl;
-            if (aEntity && intersectedElement === aEntity) {
-                const scale = aEntity.getAttribute('scale');
-                Object.keys(scale).forEach((key) => scale[key] = scale[key] + 1);
-                aEntity.setAttribute('scale', scale);
-            }
+         AFRAME.registerComponent('clickerevent', {
+      schema: {
+        color: {default: 'red'}
+      },
+  
+      init: function () {
+        elBox = this.el;
+        var data = this.data;
+        var el = this.el;  // <a-box>
+        var defaultColor = el.getAttribute('material').color;
+  
+        el.addEventListener('mouseenter', function (evt) {
+          selectEvent = evt;
+          el.setAttribute('color', data.color);
         });
-}});
-
+  
+        el.addEventListener('mouseleave', function () {
+          el.setAttribute('color', defaultColor);
+          selectEvent = null;
+        });
       }
-    }
+    });
 
-// let soundVal = input();//0.0, 0.0, 1.0
-// let soundLevel =input();//0.2
-// let soundVal2= input();//10, 0, 200//gyscale
-// let noiseScale = input();//20, 0, 200
-// let newin = input();//0.02
-// let blendLevel = input();//0.2
+    onMounted(() => {
+      window.addEventListener('dblclick', function() {
+        //  let selectModel = selectEvent ? selectEvent.detail.object : null;
+        //  console.log(123123, selectEvent);
+        //  elBox
+        elBox.setAttribute('color', `#${Math.floor(Math.random() * 0xffffff).toString(16).padEnd(6, "0")}`);
+        
+      });
+    });
+      }
+
+  }
+
+
+
 
 }
 </script>
